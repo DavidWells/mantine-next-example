@@ -17,6 +17,7 @@ const DEFAULT_THEME = getTheme()
 
 function JSSTheme({ children }) {
   const { theme } = useTheme()
+
   return (
     <MantineProvider
       theme={{
