@@ -5,6 +5,16 @@ import { useTheme } from 'next-themes'
 import { ThemeProvider } from 'next-themes'
 import ThemePicker from '../components/ThemePicker'
 
+const DEFAULT_THEME_NAME = 'light'
+function getTheme() {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.getItem('theme') || DEFAULT_THEME_NAME
+  }
+  return DEFAULT_THEME_NAME
+}
+
+const DEFAULT_THEME = getTheme()
+
 function JSSTheme({ children }) {
   const { theme } = useTheme()
   return (
@@ -22,14 +32,14 @@ function JSSTheme({ children }) {
 
 
 export default function App(props) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps } = props
 
   useEffect(() => {
-    const jssStyles = document.getElementById("mantine-ssr-styles");
+    const jssStyles = document.getElementById("mantine-ssr-styles")
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement.removeChild(jssStyles)
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -40,11 +50,11 @@ export default function App(props) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme={DEFAULT_THEME}>
         <JSSTheme>
           <Component {...pageProps} />
         </JSSTheme>
       </ThemeProvider>
     </>
-  );
+  )
 }
