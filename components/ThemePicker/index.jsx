@@ -39,7 +39,6 @@ export default function ThemePicker() {
         variant={darkButtonVarient}
         leftIcon={<MoonIcon />}
         className={styles.darkButton}
-        data-xyz={fake}
       >
         Dark
       </Button>
