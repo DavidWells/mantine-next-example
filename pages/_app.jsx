@@ -5,13 +5,21 @@ import { useTheme } from 'next-themes'
 import { ThemeProvider } from 'next-themes'
 import ThemePicker from '../components/ThemePicker'
 
-const DEFAULT_THEME_NAME = 'light'
+const isServer = typeof window === 'undefined'
 function getTheme() {
-  if (typeof window !== 'undefined') {
-    return window.localStorage.getItem('theme') || DEFAULT_THEME_NAME
+  if (isServer) {
+    return 
   }
-  return DEFAULT_THEME_NAME
+  return window.localStorage.getItem('theme')
 }
+
+function getPersistedTheme() {
+  if (isServer) {
+    return 
+  }
+  return window.persistedTheme
+}
+
 
 const DEFAULT_THEME = getTheme()
 
@@ -42,6 +50,9 @@ export default function App(props) {
     }
   }, [])
 
+  const defaultTheme = DEFAULT_THEME || getPersistedTheme()
+  console.log('defaultTheme', defaultTheme)
+  
   return (
     <>
       <Head>
@@ -50,8 +61,14 @@ export default function App(props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <script dangerouslySetInnerHTML={{ 
+          __html: `
+          window.persistedTheme = window.localStorage.getItem('theme'); 
+          console.log('persistedTheme', window.persistedTheme)
+          ` 
+        }} />
       </Head>
-      <ThemeProvider defaultTheme={DEFAULT_THEME}>
+      <ThemeProvider defaultTheme={defaultTheme}>
         <JSSTheme>
           <Component {...pageProps} />
         </JSSTheme>
