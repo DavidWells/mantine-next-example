@@ -9,7 +9,8 @@ import {
   ActionIcon,
   Container,
   useMantineTheme,
-} from "@mantine/core";
+} from "@mantine/core"
+import styles from './TodoList.module.css'
 
 function randomId() {
   return Math.random().toString(36).substr(2, 9);
@@ -75,6 +76,11 @@ export default function TodoList() {
             onChange={(event) =>
               handlers.setItemProp(index, "value", event.currentTarget.value)
             }
+            className={`${styles.input} ${styles.wrapper}`}
+            inputClassName={styles.custom}
+            // wrapperProps={{
+            //   className: styles.wrapper
+            // }}
             inputStyle={{
               textDecoration: item.completed && "line-through",
               color: item.completed && theme.colors.gray[5],
@@ -118,6 +124,8 @@ export default function TodoList() {
         onChange={(event) => setNewItem(event.currentTarget.value)}
         icon={<PlusIcon />}
         placeholder="Add business plan task"
+        className={`${styles.input} ${styles.wrapper}`}
+        inputClassName={styles.child}
         onKeyDown={(event) => {
           if (
             event.nativeEvent.code === "Enter" &&

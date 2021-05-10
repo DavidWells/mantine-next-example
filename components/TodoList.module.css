@@ -1,0 +1,8 @@
+.input.wrapper {
+  .custom {
+    background-color: whitesmoke;
+  }
+  .child {
+    background-color: #00fff3;
+  }
+}
