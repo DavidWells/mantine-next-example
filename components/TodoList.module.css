@@ -1,8 +1,21 @@
-.input.wrapper {
-  .custom {
-    background-color: whitesmoke;
+[data-theme='dark'] {
+  .input.wrapper {
+    .custom {
+      
+    }
+    .child {
+      background-color: #00fff3;
+    }
   }
-  .child {
-    background-color: #00fff3;
+}
+
+[data-theme='light'] {
+  .input.wrapper {
+    .custom {
+      background-color: #00fff3;
+    }
+    .child {
+      background-color: rgb(255 247 0 / 51%);
+    }
   }
 }
