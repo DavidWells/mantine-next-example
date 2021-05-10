@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 
 import { Button } from "@mantine/core";
 import { useTheme } from 'next-themes'
@@ -7,22 +7,25 @@ import styles from './ThemePicker.module.css'
 
 export default function ThemePicker() {
   const { theme, setTheme } = useTheme()
-  const [ fake, setFake ] = useState()
+  const [curRender, setRerender] = useState('fake-key')
+
   console.log('theme', theme)
-  const lightButtonVarient = (theme === 'light') ? 'filled' : 'outline'
+  const lightButtonVarient = (!theme || theme === 'light') ? 'filled' : 'outline'
   const darkButtonVarient = (theme === 'dark') ?  'filled' : 'outline'
   console.log('darkButtonVarient', darkButtonVarient)
   console.log('lightButtonVarient', lightButtonVarient)
+
+  function forceRerender() {
+    setRerender(new Date().toISOString())
+  }
+
   useEffect(() => {
     // force re-render
-    setTimeout(() => {
-      console.log('set')
-      setFake('foo')
-    }, 100)
+    forceRerender()
   }, [theme])
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} key={curRender}>
       <Button
         onClick={() => setTheme('light')}
         variant={lightButtonVarient}
