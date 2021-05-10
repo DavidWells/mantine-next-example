@@ -1,0 +1,31 @@
+.wrapper {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  button {
+    margin-right: 12px;
+  }
+}
+
+[data-theme='dark'] {
+  .wrapper {
+    .darkButton {
+
+    }
+  }
+}
+
+[data-theme='light'] {
+  .wrapper {
+    .lightButton {
+      
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .wrapper {
+    margin-top: 20px;
+    position: initial;
+  }
+}
