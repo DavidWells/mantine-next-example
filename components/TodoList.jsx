@@ -105,7 +105,7 @@ export default function TodoList() {
   return (
     <Container size="xs">
       <Title style={{ textAlign: "center", marginBottom: theme.spacing.xl }}>
-        Business Plan
+        Todo
       </Title>
 
       {items.current}
@@ -125,7 +125,7 @@ export default function TodoList() {
         icon={<PlusIcon />}
         placeholder="Add business plan task"
         className={`${styles.input} ${styles.wrapper}`}
-        inputClassName={styles.child}
+        inputClassName={styles.addTodo}
         onKeyDown={(event) => {
           if (
             event.nativeEvent.code === "Enter" &&

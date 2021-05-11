@@ -52,7 +52,10 @@ export default function App(props) {
 
   const defaultTheme = DEFAULT_THEME || getPersistedTheme()
   console.log('defaultTheme', defaultTheme)
-  
+  // https://github.com/system-ui/theme-ui/pull/277/files
+  // https://tympanus.net/Development/SVGDrawingAnimation/index3.html
+  // https://codepen.io/roydigerhund/pen/jqJvWK
+  // https://tympanus.net/Tutorials/PagePreloadingEffect/index2.html
   return (
     <>
       <Head>
@@ -61,7 +64,7 @@ export default function App(props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <script dangerouslySetInnerHTML={{ 
+        <script dangerouslySetInnerHTML={{
           __html: `
           window.persistedTheme = window.localStorage.getItem('theme'); 
           console.log('persistedTheme', window.persistedTheme)

@@ -9,20 +9,13 @@ export default function ThemePicker() {
   const { theme, setTheme } = useTheme()
   const [curRender, setRerender] = useState('fake-key')
 
-  console.log('theme', theme)
+  useEffect(() => {
+    // Force rerender upon load
+    setRerender(new Date().toISOString())
+  }, [])
+
   const lightButtonVarient = (!theme || theme === 'light') ? 'filled' : 'outline'
   const darkButtonVarient = (theme === 'dark') ?  'filled' : 'outline'
-  console.log('darkButtonVarient', darkButtonVarient)
-  console.log('lightButtonVarient', lightButtonVarient)
-
-  function forceRerender() {
-    setRerender(new Date().toISOString())
-  }
-
-  useEffect(() => {
-    // force re-render
-    forceRerender()
-  }, [theme])
 
   return (
     <div className={styles.wrapper} key={curRender}>
@@ -42,9 +35,6 @@ export default function ThemePicker() {
       >
         Dark
       </Button>
-      {/* <div>
-        Current theme: {theme}
-      </div> */}
     </div>
   )
 }
